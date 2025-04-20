@@ -45,6 +45,7 @@ from time import mktime
 CONFIGURATION_DEFAULTS = {
     "podcast-directory": "~/Podcasts",
     "maxnum": 5000,
+    "maxage-days": 3650,
     "mimetypes": [ "audio/aac",
                    "audio/ogg",
                    "audio/mpeg",
