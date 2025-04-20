@@ -4,23 +4,23 @@ with open('requirements.txt') as f:
     required = f.read().splitlines()
 
 setup(name='podfox',
-    version='0.1.1',
+    version='0.2.0',
     description='Podcatcher for the terminal',
-    url='http://github.com/brtmr/podfox',
-    author='Bastian Reitemeier',
-    author_email='mail@brtmr.de',
+    url='https://github.com/marcozambi/podfox',
+    author='Bastian Reitemeier, Marco Zambianchi',
+    author_email='marcozambi@gmail.com',
     license='GPLv3',
     packages=['podfox'],
     zip_safe=False,
     entry_points={
         'console_scripts' : [
-            'podfox = podfox.__init__:main'    
+            'podfox = podfox.__init__:main'
         ]
     },
     install_requires=[
-        'colorama==0.3.7',
+        'colorama==0.4.6',
         'docopt==0.6.2',
-        'feedparser==5.2.1',
-        'requests==2.20.0',
+        'feedparser==6.0.11',
+        'requests==2.32.3',
         ],
     )

@@ -1,1 +1,7 @@
 *.swp
+.venv/
+build/
+dist/
+podfox.egg-info/
+podfox/__pycache__/
+
