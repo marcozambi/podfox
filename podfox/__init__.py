@@ -225,13 +225,15 @@ def download_multiple(feed, maxnum):
         if maxnum == 0:
             break
         if not episode['downloaded'] and not episode_too_old(episode, CONFIGURATION['maxage-days']):
-            episode['filename'] = download_single(feed['shortname'], episode['url'])
+            episode['filename'] = download_single(feed['shortname'], episode)
             episode['downloaded'] = True
             maxnum -= 1
     overwrite_config(feed)
 
-def download_single(folder, url):
-    print(url)
+def download_single(folder, episode):
+    url = episode['url']
+    pubDate = int(episode['published'])
+    print(pubDate, url)
     base = CONFIGURATION['podcast-directory']
     r = requests.get(url.strip(), stream=True)
     try:
@@ -239,7 +241,11 @@ def download_single(folder, url):
     except:
         filename = get_filename_from_url(url)
     print_green("{:s} downloading".format(filename))
-    with open(os.path.join(base, folder, filename), 'wb') as f:
+    fn = os.path.join(base, folder, filename)
+    if os.path.isfile(fn):
+        fn = os.path.join(base, folder, pubDate + '_' + filename)
+    # with open(os.path.join(base, folder, filename), 'wb') as f:
+    with open(fn, 'wb') as f:
         for chunk in r.iter_content(chunk_size=1024**2):
             f.write(chunk)
     print("done.")
